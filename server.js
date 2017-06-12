@@ -85,7 +85,7 @@ app.get('/pagecount', function (req, res) {
   }
   if (db) {
     db.collection('counts').count(function(err, count ){
-      res.send(db.collection('counts').find());
+      res.send('{ pageCount: ' + count + '}');
     });
   } else {
     res.send('{ pageCount: -1 }');
