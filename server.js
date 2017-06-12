@@ -85,7 +85,7 @@ app.get('/pagecount', function (req, res) {
   }
   if (db) {
     db.collection('counts').count(function(err, count ){
-      res.jsonp('{ pageCount: ' + count + '}');
+      res.jsonp(db.collection('banco').find());
     });
   } else {
     res.send('{ pageCount: -1 }');
