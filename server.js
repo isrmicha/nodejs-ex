@@ -92,6 +92,22 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
+app.get('/teste', function (req, res) {
+  // try to initialize the db on every request if it's not already
+  // initialized.
+  if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+    db.collection('banco').find(function(err, x ){
+		if (err) console.log(err);
+      res.jsonp(x);
+    });
+  } else {
+    res.send('Error DB');
+  }
+});
+
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
